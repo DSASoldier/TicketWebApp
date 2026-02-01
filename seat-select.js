@@ -106,7 +106,7 @@ for(let i=0;i<value.total-value.seats;i++){
 
 const applyButton = document.createElement("button");
 
-applyButton.textContent="Apply"
+applyButton.textContent="Book Now"
 body.appendChild(applyButton);
 
 
@@ -137,6 +137,8 @@ applyButton.addEventListener("click",()=>{
     
 
     localStorage.setItem("data",JSON.stringify(data));
+
+    alert(`total price for this is ${count*200}`)
     window.location.href = 'home.html';
 })
 
