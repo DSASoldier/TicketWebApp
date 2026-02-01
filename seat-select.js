@@ -137,6 +137,7 @@ applyButton.addEventListener("click",()=>{
     
 
     localStorage.setItem("data",JSON.stringify(data));
+    window.location.href = 'home.html';
 })
 
 
