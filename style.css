@@ -1,3 +1,14 @@
-.theater:{
-    height: 100px;
+.movie-theater{
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+      gap: 20px;
+}
+.theater:hover{
+    cursor: pointer;
+    
+}
+.theater{
+  
+    padding-bottom: 10px;
 }

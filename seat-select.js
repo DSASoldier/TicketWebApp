@@ -86,10 +86,15 @@ const seats = value.seats;
 
 console.log(value);
 
+const head = document.createElement("p");
+
+head.textContent=`Your movie name is ${store} and theater is ${value.index}`
+
 const div  = document.createElement("div");
 
 const body = document.querySelector("body");
 
+body.appendChild(head);
 body.appendChild(div);
 
 const pTag = document.createElement("p");
@@ -98,25 +103,43 @@ pTag.textContent="select your ticket below";
 
 div.appendChild(pTag);
 
-for(let i=0;i<value.total-value.seats;i++){
+for(let i=0;i<value.total;i++){
     const input = document.createElement("input");
+    const label = document.createElement("p");
+    label.textContent = `${'A'+i}`;
     input.type="checkbox";
+    label.style.display="inline";
+    label.style.marginLeft="10px";
+    div.appendChild(label);
     div.appendChild(input); 
 }
-
+div.classList.add("ticket-container");
 const applyButton = document.createElement("button");
 
 applyButton.textContent="Book Now"
 body.appendChild(applyButton);
+
+const divChildren = document.querySelector("div").childNodes;
+
+for(let i=0;i<=2*value.seats;i+=2){
+    divChildren[i].checked=true;
+    divChildren[i].disabled = true;
+}
 
 
 applyButton.addEventListener("click",()=>{
     const divChildren = document.querySelector("div").childNodes;
     let count=0;
 
-    for(let i=1;i<divChildren.length;i++){
-        if(divChildren[i].checked){
+    for(let i=0;i<divChildren.length;i++){
+
+
+        if(!divChildren[i].disabled && divChildren[i].checked){
             count++;
+        }
+        if(count>3){
+            alert("You cannot book more three tickets");
+            return ;
         }
     }
     value.seats=seats+count;
@@ -141,5 +164,3 @@ applyButton.addEventListener("click",()=>{
     alert(`total price for this is ${count*200}`)
     window.location.href = 'home.html';
 })
-
-
