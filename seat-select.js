@@ -108,6 +108,7 @@ for(let i=0;i<value.total;i++){
     const label = document.createElement("p");
     label.textContent = `${'A'+i}`;
     input.type="checkbox";
+    input.classList.add("checkbox");
     label.style.display="inline";
     label.style.marginLeft="10px";
     div.appendChild(label);
@@ -128,6 +129,8 @@ for(let i=0;i<=2*value.seats;i+=2){
 
 
 applyButton.addEventListener("click",()=>{
+
+    
     const divChildren = document.querySelector("div").childNodes;
     let count=0;
 
@@ -161,6 +164,21 @@ applyButton.addEventListener("click",()=>{
 
     localStorage.setItem("data",JSON.stringify(data));
 
-    alert(`total price for this is ${count*200}`)
+    alert(`${store} total price for this is ${count*200}`)
     window.location.href = 'home.html';
 })
+let count=0;
+document.querySelectorAll("checkbox").forEach((element)=>{
+
+    element.addEventListener("click",()=>{
+        if(!element.disabled){
+            count++;
+        }
+    })
+
+})
+
+setInterval(() => {
+    
+    document.querySelector("dynamic-price").textContent = `${count*200}`
+}, 1000);
