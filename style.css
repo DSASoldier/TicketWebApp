@@ -1,3 +1,4 @@
+
 .movie-theater{
     display: flex;
     justify-content: center;
@@ -11,4 +12,9 @@
 .theater{
   
     padding-bottom: 10px;
+}
+
+.ticket-book-heading{
+    text-align: center;
+    margin-top: 55px;
 }

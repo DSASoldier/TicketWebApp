@@ -177,8 +177,3 @@ document.querySelectorAll("checkbox").forEach((element)=>{
     })
 
 })
-
-setInterval(() => {
-    
-    document.querySelector("dynamic-price").textContent = `${count*200}`
-}, 1000);

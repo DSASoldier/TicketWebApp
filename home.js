@@ -189,9 +189,9 @@ movieSelector.addEventListener("change", () => {
             localStorage.setItem("movie", movieSelector.value);
 
             localStorage.setItem(movieSelector.value, store);
-            window.location.href = 'seatSelect.html';
+            // window.location.href = 'seatSelect.html';
 
-
+            seatBook();
         })
 
     })
@@ -217,15 +217,17 @@ document.querySelectorAll(".theater").forEach((element, i) => {
 
         localStorage.setItem(movieSelector.value, store);
         // window.location.href = 'seatSelect.html';
-        seatBook();
 
-        console.log("body",body);
+        
+        seatBook();
     })
 
 })
 
 
 function seatBook() {
+    
+
     const store = localStorage.getItem("movie");
 
     console.log(store);
@@ -239,16 +241,25 @@ function seatBook() {
 
     head.textContent = `Your movie name is ${store} and theater is ${value.index}`
 
+    head.classList.add("ticket-book-heading");
     const div = document.createElement("div");
 
     const body = document.querySelector("body");
 
-    body.appendChild(head);
-    body.appendChild(div);
+    
+
+    const footerTicketContainer = document.createElement("div");
+
+    footerTicketContainer.appendChild(head);
+    footerTicketContainer.appendChild(div);
+    
+    // body.appendChild(head);
+    // body.appendChild(div);
 
     const pTag = document.createElement("p");
 
     pTag.textContent = "select your ticket below";
+
 
     div.appendChild(pTag);
 
@@ -267,14 +278,18 @@ function seatBook() {
     const applyButton = document.createElement("button");
 
     applyButton.textContent = "Book Now"
-    body.appendChild(applyButton);
+    footerTicketContainer.appendChild(applyButton);
 
-    const divChildren = document.querySelector("div").childNodes;
+    body.appendChild(footerTicketContainer);
 
-    for (let i = 0; i <= value.seats; i ++) {
-        // divChildren[i].checked = true;
-        // divChildren[i].disabled = true;
-        console.log(divChildren[i]);
+    
+    const divCheckBoxes = document.querySelectorAll(".checkbox");
+
+    
+    for (let i = 0; i <= Math.min(60,value.seats); i ++) {
+        divCheckBoxes[i].checked = true;
+        divCheckBoxes[i].disabled = true;
+        console.log(divCheckBoxes[i]);
     }
 
 
@@ -282,10 +297,10 @@ function seatBook() {
 
 
         const divChildren = document.querySelector("div").childNodes;
+
         let count = 0;
 
         for (let i = 0; i < divChildren.length; i++) {
-
 
             if (!divChildren[i].disabled && divChildren[i].checked) {
                 count++;
@@ -317,6 +332,12 @@ function seatBook() {
         alert(`${store} total price for this is ${count * 200}`)
         window.location.href = 'home.html';
     })
+
+    const lengthBody = body.childNodes.length;
+
+    if(lengthBody>3){
+        body.childNodes[lengthBody-2].remove();
+    }
     let count = 0;
     document.querySelectorAll("checkbox").forEach((element) => {
 
@@ -327,5 +348,4 @@ function seatBook() {
         })
 
     })
-
 }
